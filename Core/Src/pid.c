@@ -16,9 +16,9 @@ int Vertical_out,Velocity_out,Turn_out,Target_Speed,Target_turn,MOTO1,MOTO2;
 float last_error;
 float Med_Angle=0.0f;//平衡时角度值偏移量（机械中值）
 //参数
-float Vertical_Kp=-400.0f,Vertical_Kd=-2.20f;			//直立环 数量级（Kp：0~1000、Kd：0~10）
-float Velocity_Kp=65.0f,Velocity_Ki=-0.0325f;		  //速度环 数量级（Kp：0~1）
-float Turn_Kp = 80.0f,Turn_Kd = 2.0f;             //转向环 
+float Vertical_Kp=-400.0f,Vertical_Kd=-3.20f;			//直立环 数量级（Kp：0~1000、Kd：0~10）
+float Velocity_Kp=65.0f,Velocity_Ki=-0.0325f;		  //速度环 
+float Turn_Kp = 100.0f,Turn_Kd = 4.0f;             //转向环 
 
 uint8_t stop;
 
@@ -64,7 +64,7 @@ int Velocity(int target_speed, int left_speed, int right_speed)
 	
     integral += Lowout;
     
-    integral = (integral > 1.5) ? 1.5f : (integral < -1.50f ? -1.50f : integral);
+    integral = (integral > 4.0f) ? 4.0f : (integral < -4.0f ? -4.0f : integral);
 		
     int pid_out =(int)(Velocity_Kp*Lowout + Velocity_Ki *integral);
 

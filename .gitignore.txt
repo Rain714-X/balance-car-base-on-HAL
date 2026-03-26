@@ -1,0 +1,5 @@
+MDK-ARM/Objects/
+MDK-ARM/*.bak
+MDK-ARM/*.dep
+MDK-ARM/*.crf
+*.log
